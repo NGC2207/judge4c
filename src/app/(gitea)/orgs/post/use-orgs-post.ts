@@ -1,0 +1,64 @@
+import { orgsPost } from "@/app/actions/orgs";
+import useOrgsPostStore from "./store";
+import { CreateOrgOption } from "gitea-js";
+
+const useOrgsPostForm = () => {
+  const {
+    description,
+    email,
+    full_name,
+    location,
+    repo_admin_change_team_access,
+    username,
+    visibility,
+    website,
+    set,
+  } = useOrgsPostStore();
+
+  const handleChange =
+    (key: keyof CreateOrgOption) =>
+    (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+      set(key, e.target.value as CreateOrgOption[keyof CreateOrgOption]);
+    };
+
+  const resetForm = () => {
+    set("description", "");
+    set("email", "");
+    set("full_name", "");
+    set("location", "");
+    set("username", "");
+    set("visibility", "public");
+    set("website", "");
+  };
+
+  const handleSubmit = async () => {
+    const createOrgOption = {
+      description,
+      email,
+      full_name,
+      location,
+      repo_admin_change_team_access,
+      username,
+      visibility,
+      website,
+    };
+    await orgsPost(createOrgOption);
+    resetForm();
+  };
+
+  return {
+    description,
+    email,
+    full_name,
+    location,
+    repo_admin_change_team_access,
+    username,
+    visibility,
+    website,
+    handleChange,
+    resetForm,
+    handleSubmit,
+  };
+};
+
+export default useOrgsPostForm;
