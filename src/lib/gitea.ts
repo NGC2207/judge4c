@@ -1,5 +1,3 @@
-"use server";
-
 import logger from "./logger";
 import fetch from "cross-fetch";
 import { giteaApi } from "gitea-js";

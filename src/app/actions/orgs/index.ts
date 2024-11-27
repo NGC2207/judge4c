@@ -1,3 +1,5 @@
+"use server";
+
 import api from "@/lib/gitea";
 import callApi from "@/lib/api";
 import { CreateOrgOption, Organization } from "gitea-js";
