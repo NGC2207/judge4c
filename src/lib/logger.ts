@@ -6,6 +6,8 @@ const logger: Logger = pino({
     target: "pino-pretty",
     options: {
       colorize: true,
+      translateTime: "SYS:standard",
+      ignore: "pid,hostname",
     },
   },
   redact: ["password", "token", "secret"],
