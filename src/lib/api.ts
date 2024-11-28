@@ -1,13 +1,13 @@
 import logger from "./logger";
 import { APIError } from "gitea-js";
 
-async function callApi<T>(
+async function callGiteaApi<T>(
   apiCall: () => Promise<T>,
   successMessage: string,
   context?: Record<string, unknown>
 ): Promise<{ data?: T; error?: APIError }> {
   try {
-    logger.info("Calling Gitea API...");
+    logger.info({ context }, "Calling Gitea API...");
     const response = await apiCall();
     logger.info(successMessage, response);
     return { data: response };
@@ -25,4 +25,4 @@ async function callApi<T>(
   }
 }
 
-export default callApi;
+export default callGiteaApi;

@@ -8,8 +8,8 @@ import {
   CreateOrgOption,
 } from "gitea-js";
 import api from "@/lib/gitea";
-import callApi from "@/lib/api";
 import logger from "@/lib/logger";
+import callGiteaApi from "@/lib/api";
 
 export async function orgGetAll(
   query?: {
@@ -21,19 +21,19 @@ export async function orgGetAll(
   params?: RequestParams
 ): Promise<HttpResponse<Organization[], APIError>> {
   const context = { query, params };
-  logger.info("Fetching organizations...", context);
-  const result = await callApi(
+  logger.info({ context }, "Fetching organizations...");
+  const result = await callGiteaApi(
     () => api.orgs.orgGetAll(query, params),
     "List of organizations retrived",
     context
   );
 
   if (result.error) {
-    logger.error("Failed to fetch organizations", result.error);
+    logger.error({ error: result.error }, "Failed to fetch organizations");
     return result.error as HttpResponse<Organization[], APIError>;
   }
 
-  logger.info("Organizations fetched sucessfully", result.data);
+  logger.info({ data: result.data }, "Organizations fetched sucessfully");
   return result.data as HttpResponse<Organization[], APIError>;
 }
 
@@ -43,7 +43,7 @@ export async function orgCreate(
 ): Promise<HttpResponse<Organization, APIError>> {
   const context = { organization, params };
   logger.info({ context }, "Creating organization...");
-  const result = await callApi(
+  const result = await callGiteaApi(
     () => api.orgs.orgCreate(organization, params),
     "Organization created",
     context

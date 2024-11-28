@@ -1,7 +1,7 @@
 "use client";
 
 import logger from "@/lib/logger";
-import useOrgsPostStore from "./store";
+import useOrgsPostStore from "./org-form-store";
 import { CreateOrgOption } from "gitea-js";
 import { orgCreate } from "@/app/actions/orgs";
 

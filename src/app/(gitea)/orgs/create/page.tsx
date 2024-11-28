@@ -15,9 +15,9 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import useOrgsPostForm from "./use-org-form";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import useOrgsPostForm from "./use-orgs-post";
 import { Button } from "@/components/ui/button";
 
 export default function OrgsPostPage() {
