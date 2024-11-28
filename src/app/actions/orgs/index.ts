@@ -30,11 +30,13 @@ export async function orgGetAll(
 
   if (result.error) {
     logger.error({ error: result.error }, "Failed to fetch organizations");
-    return result.error as HttpResponse<Organization[], APIError>;
+    // return result.error as HttpResponse<Organization[], APIError>;
+    return JSON.parse(JSON.stringify(result.error));
   }
 
   logger.info({ data: result.data }, "Organizations fetched sucessfully");
-  return result.data as HttpResponse<Organization[], APIError>;
+  // return result.data as HttpResponse<Organization[], APIError>;
+  return JSON.parse(JSON.stringify(result.data));
 }
 
 export async function orgCreate(
@@ -51,9 +53,11 @@ export async function orgCreate(
 
   if (result.error) {
     logger.error({ error: result.error }, "Failed to create organization");
-    return result.error as HttpResponse<Organization, APIError>;
+    // return result.error as HttpResponse<Organization, APIError>;
+    return JSON.parse(JSON.stringify(result.error));
   }
 
   logger.info({ data: result.data }, "Organization created sucessfully");
-  return result.data as HttpResponse<Organization, APIError>;
+  // return result.data as HttpResponse<Organization, APIError>;
+  return JSON.parse(JSON.stringify(result.data));
 }
