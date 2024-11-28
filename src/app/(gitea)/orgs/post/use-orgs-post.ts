@@ -1,6 +1,9 @@
-import { orgsPost } from "@/app/actions/orgs";
+"use client";
+
+import logger from "@/lib/logger";
 import useOrgsPostStore from "./store";
 import { CreateOrgOption } from "gitea-js";
+import { orgCreate } from "@/app/actions/orgs";
 
 const useOrgsPostForm = () => {
   const {
@@ -42,7 +45,9 @@ const useOrgsPostForm = () => {
       visibility,
       website,
     };
-    await orgsPost(createOrgOption);
+
+    const response = await orgCreate(createOrgOption);
+    logger.info({ response }, "Organization created");
     resetForm();
   };
 

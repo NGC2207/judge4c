@@ -31,6 +31,7 @@ export default function OrgsPostPage() {
     website,
     handleChange,
     resetForm,
+    handleSubmit,
   } = useOrgsPostForm();
 
   return (
@@ -124,7 +125,7 @@ export default function OrgsPostPage() {
           <Button variant="outline" onClick={resetForm}>
             Reset
           </Button>
-          <Button>Create</Button>
+          <Button onClick={handleSubmit}>Create</Button>
         </CardFooter>
       </Card>
     </div>
