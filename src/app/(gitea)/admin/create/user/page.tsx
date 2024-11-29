@@ -15,7 +15,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import adminCreateUserForm from "./form";
+import AdminCreateUserForm from "./form";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
@@ -30,7 +30,8 @@ export default function AdminCreateUserPage() {
     handleChange,
     handleReset,
     handleSubmit,
-  } = adminCreateUserForm();
+    errors,
+  } = AdminCreateUserForm();
 
   return (
     <div className="flex h-screen w-full items-center justify-center px-4">
@@ -61,6 +62,9 @@ export default function AdminCreateUserPage() {
                     <SelectItem value="private">Private</SelectItem>
                   </SelectContent>
                 </Select>
+                {errors?.visibility && (
+                  <p className="text-red-500">{errors.visibility}</p>
+                )}
               </div>
               <div className="flex flex-col space-y-1.5">
                 <Label htmlFor="username">Username</Label>
@@ -71,6 +75,9 @@ export default function AdminCreateUserPage() {
                   value={username}
                   onChange={handleChange("username")}
                 />
+                {errors?.username && (
+                  <p className="text-red-500">{errors.username}</p>
+                )}
               </div>
               <div className="flex flex-col space-y-1.5">
                 <Label htmlFor="email">Email</Label>
@@ -82,6 +89,9 @@ export default function AdminCreateUserPage() {
                   value={email}
                   onChange={handleChange("email")}
                 />
+                {errors?.email && (
+                  <p className="text-red-500">{errors.email}</p>
+                )}
               </div>
               <div className="flex flex-col space-y-1.5">
                 <Label htmlFor="password">Password</Label>
@@ -93,6 +103,9 @@ export default function AdminCreateUserPage() {
                   value={password}
                   onChange={handleChange("password")}
                 />
+                {errors?.password && (
+                  <p className="text-red-500">{errors.password}</p>
+                )}
               </div>
               <div className="flex flex-col space-y-1.5">
                 <Label htmlFor="must_change_password">
@@ -114,6 +127,9 @@ export default function AdminCreateUserPage() {
                     <SelectItem value="false">False</SelectItem>
                   </SelectContent>
                 </Select>
+                {errors?.must_change_password && (
+                  <p className="text-red-500">{errors.must_change_password}</p>
+                )}
               </div>
             </div>
           </form>
