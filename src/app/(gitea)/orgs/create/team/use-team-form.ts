@@ -3,8 +3,8 @@
 import logger from "@/lib/logger";
 import useTeamsPostStore from "./team-form-store";
 import { CreateTeamOption } from "gitea-js";
-import { orgCreateTeam } from "@/app/actions/teams";
-import { orgGetAll } from "@/app/actions/orgs";
+import { orgCreateTeam } from "@/app/actions/(gitea)/teams";
+import { orgGetAll } from "@/app/actions/(gitea)/orgs";
 import { useEffect } from "react";
 
 const useTeamsPostForm = () => {

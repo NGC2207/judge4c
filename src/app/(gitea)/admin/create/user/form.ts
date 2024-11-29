@@ -5,7 +5,7 @@ import logger from "@/lib/logger";
 import React, { useState } from "react";
 import adminCreateUserStore from "./store";
 import { CreateUserOption } from "gitea-js";
-import { adminCreateUser } from "@/app/actions/admin/create/user";
+import { adminCreateUser } from "@/app/actions/(gitea)/admin/create/user";
 
 const adminCreateUserFormSchema = z.object({
   visibility: z.enum(["public", "limited", "private"]),

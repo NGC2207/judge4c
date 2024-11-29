@@ -20,7 +20,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { useEffect, useState } from "react";
-import { orgGetAll } from "@/app/actions/orgs";
+import { orgGetAll } from "@/app/actions/(gitea)/orgs";
 
 export default function RepoPostPage() {
   const {
