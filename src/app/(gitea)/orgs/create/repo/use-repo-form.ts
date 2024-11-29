@@ -3,7 +3,7 @@
 import logger from "@/lib/logger";
 import useRepoPostStore from "./repo-form-store";
 import { CreateRepoOption } from "gitea-js";
-import { createOrgRepo } from "@/app/actions/(gitea)/repos";
+import { createOrgRepo } from "@/app/actions/(gitea)/repo";
 
 const useRepoPostForm = () => {
   const {
