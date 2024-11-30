@@ -18,15 +18,17 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
-      <body className={cn("font-sans antialiased", inter.variable)}>
+    <html lang="en" className="h-full" suppressHydrationWarning>
+      <body
+        className={cn("font-sans antialiased flex min-h-full", inter.variable)}
+      >
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
           enableSystem
           disableTransitionOnChange
         >
-          {children}
+          <main className="w-full">{children}</main>
         </ThemeProvider>
       </body>
     </html>
