@@ -37,7 +37,11 @@ const AdminCreateUserForm = () => {
   const handleChange =
     (key: keyof CreateUserOption) =>
     (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
-      set(key, e.target.value as CreateUserOption[keyof CreateUserOption]);
+      let value: string | boolean = e.target.value;
+      if (key === "must_change_password") {
+        value = value === "true";
+      }
+      set(key, value as CreateUserOption[keyof CreateUserOption]);
     };
 
   const handleReset = () => {
