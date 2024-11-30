@@ -31,7 +31,7 @@ export default function RepoCreateFileLayout({
           <ThemeToggle />
           <Separator
             orientation="vertical"
-            className="mr-2 h-4 w-px bg-border"
+            className="ml-2 mr-2 h-4 w-px bg-border"
           />
           <Breadcrumb>
             <BreadcrumbList>

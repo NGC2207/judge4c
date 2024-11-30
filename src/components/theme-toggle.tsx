@@ -28,7 +28,7 @@ export function ThemeToggle() {
     <Button
       variant="ghost"
       size="icon"
-      className="flex h-6 w-6 items-center justify-center rounded-md transition"
+      className="flex h-5 w-auto items-center justify-center rounded-md transition"
       onClick={toggleTheme}
     >
       {icons[theme as Theme]}
