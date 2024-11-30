@@ -4,14 +4,11 @@ import {
   HoverCardTrigger,
 } from "@/components/ui/hover-card";
 import { presets } from "./data/presets";
-import { RotateCcw } from "lucide-react";
 import { Label } from "@/components/ui/label";
 import { models, types } from "./data/models";
-import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { CodeViewer } from "./components/code-viewer";
 import { PresetSave } from "./components/preset-save";
-import { Separator } from "@/components/ui/separator";
 import { PresetShare } from "./components/preset-share";
 import { ModelSelector } from "./components/model-selector";
 import { PresetActions } from "./components/preset-actions";
@@ -21,7 +18,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 export default function RepoCreateFilePage() {
   return (
     <div className="h-full flex flex-col">
-      <div className="flex flex-col items-start justify-between space-y-2 px-8 py-4 sm:flex-row sm:items-center sm:space-y-0 md:h-16">
+      <div className="flex flex-col items-start justify-between space-y-2 px-8 pt-2 sm:flex-row sm:items-center sm:space-y-0 md:h-12">
         <h2 className="text-lg font-semibold">Playground</h2>
         <div className="ml-auto flex w-full space-x-2 sm:justify-end">
           <PresetSelector presets={presets} />
@@ -33,9 +30,8 @@ export default function RepoCreateFilePage() {
           <PresetActions />
         </div>
       </div>
-      <Separator />
       <Tabs defaultValue="complete" className="flex-1">
-        <div className="h-full px-8 py-6">
+        <div className="h-full px-8 py-2">
           <div className="grid h-full items-stretch gap-6 md:grid-cols-[1fr_200px]">
             <div className="hidden flex-col space-y-4 sm:flex md:order-2">
               <div className="grid gap-2">
@@ -224,13 +220,6 @@ export default function RepoCreateFilePage() {
                     placeholder="Write a tagline for an ice cream shop"
                     className="min-h-[400px] flex-1 p-4 md:min-h-[700px] lg:min-h-[700px]"
                   />
-                  <div className="flex items-center space-x-2">
-                    <Button>Submit</Button>
-                    <Button variant="secondary">
-                      <span className="sr-only">Show history</span>
-                      <RotateCcw />
-                    </Button>
-                  </div>
                 </div>
               </TabsContent>
               <TabsContent value="insert" className="mt-0 border-0 p-0">
@@ -241,13 +230,6 @@ export default function RepoCreateFilePage() {
                       className="h-full min-h-[300px] lg:min-h-[700px] xl:min-h-[700px]"
                     />
                     <div className="rounded-md border bg-muted"></div>
-                  </div>
-                  <div className="flex items-center space-x-2">
-                    <Button>Submit</Button>
-                    <Button variant="secondary">
-                      <span className="sr-only">Show history</span>
-                      <RotateCcw />
-                    </Button>
                   </div>
                 </div>
               </TabsContent>
@@ -272,13 +254,6 @@ export default function RepoCreateFilePage() {
                       </div>
                     </div>
                     <div className="mt-[21px] min-h-[400px] rounded-md border bg-muted lg:min-h-[700px]" />
-                  </div>
-                  <div className="flex items-center space-x-2">
-                    <Button>Submit</Button>
-                    <Button variant="secondary">
-                      <span className="sr-only">Show history</span>
-                      <RotateCcw />
-                    </Button>
                   </div>
                 </div>
               </TabsContent>
