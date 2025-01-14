@@ -4,6 +4,7 @@ import Image from "next/image";
 import { useTheme } from "next-themes";
 import { Check, Minus } from "lucide-react";
 import { useEffect, useId, useState } from "react";
+import { Skeleton } from "@/components/ui/skeleton";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 
 const items = [
@@ -21,7 +22,21 @@ export default function ThemeToggle() {
     setMounted(true);
   }, []);
 
-  if (!mounted) return null;
+  if (!mounted) {
+    return (
+      <div className="flex gap-3">
+        {items.map((item) => (
+          <div
+            key={`${id}-${item.value}`}
+            className="flex flex-col items-center"
+          >
+            <Skeleton className="h-[70px] w-[88px] rounded-lg" />
+            <Skeleton className="mt-2 h-4 w-[88px]" />
+          </div>
+        ))}
+      </div>
+    );
+  }
 
   return (
     <RadioGroup className="flex gap-3" defaultValue={theme}>
