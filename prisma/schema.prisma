@@ -76,3 +76,29 @@ model Authenticator {
 
     @@id([userId, credentialID])
 }
+
+model Problem {
+    id           String           @id @default(cuid())
+    titleSlug    String           @unique
+    translations ProblemContent[]
+    createdAt    DateTime         @default(now())
+    updatedAt    DateTime         @updatedAt
+}
+
+enum Language {
+    en_US
+    zh_CN
+}
+
+model ProblemContent {
+    id          String   @id @default(cuid())
+    language    Language
+    title       String
+    description String
+    createdAt   DateTime @default(now())
+    updatedAt   DateTime @updatedAt
+    problem     Problem  @relation(fields: [problemId], references: [id])
+    problemId   String
+
+    @@unique([language, problemId], name: "unique_problem_language")
+}
