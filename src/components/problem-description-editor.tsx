@@ -1,49 +1,32 @@
 "use client";
 
-import { useTheme } from "next-themes";
+import { useCallback } from "react";
 import { highlighter } from "@/lib/shiki";
 import { shikiToMonaco } from "@shikijs/monaco";
 import { Skeleton } from "@/components/ui/skeleton";
 import Editor, { Monaco } from "@monaco-editor/react";
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useProblemDescriptionEditor } from "@/hooks/useProblemDescriptionEditor";
+
+const skeleton = <Skeleton className="h-full w-full rounded-xl" />;
 
 export default function ProblemDescriptionEditor() {
-  const { resolvedTheme } = useTheme();
-  const [isDirty, setIsDirty] = useState(false);
-
-  const theme = resolvedTheme === "light" ? "github-light" : "github-dark";
+  const { theme, problemDescription, language, handleChange } =
+    useProblemDescriptionEditor();
 
   const handleBeforeMount = useCallback((monaco: Monaco) => {
-    shikiToMonaco(highlighter, monaco);
+    try {
+      shikiToMonaco(highlighter, monaco);
+    } catch (error) {
+      console.error("Failed to initialize Monaco with Shiki:", error);
+    }
   }, []);
-
-  const handleChange = useCallback(() => {
-    setIsDirty(true);
-  }, []);
-
-  const skeleton = useMemo(
-    () => <Skeleton className="h-full w-full rounded-xl" />,
-    []
-  );
-
-  useEffect(() => {
-    const handleBeforeUnload = (event: BeforeUnloadEvent) => {
-      if (isDirty) {
-        event.preventDefault();
-      }
-    };
-
-    window.addEventListener("beforeunload", handleBeforeUnload);
-    return () => {
-      window.removeEventListener("beforeunload", handleBeforeUnload);
-    };
-  }, [isDirty]);
 
   return (
     <Editor
       theme={theme}
-      language="markdown"
       loading={skeleton}
+      language={language}
+      value={problemDescription}
       beforeMount={handleBeforeMount}
       onChange={handleChange}
       options={{ automaticLayout: true, minimap: { enabled: false } }}
