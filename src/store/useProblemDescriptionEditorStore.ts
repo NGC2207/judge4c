@@ -8,7 +8,7 @@ interface ProblemDescriptionEditorState {
 
 export const useProblemDescriptionEditorStore =
   create<ProblemDescriptionEditorState>((set) => ({
-    language: "markdown",
+    language: "mdx",
     problemDescription: "",
     setProblemDescription: (problemDescription) => set({ problemDescription }),
   }));

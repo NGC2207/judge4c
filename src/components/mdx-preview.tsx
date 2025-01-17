@@ -6,35 +6,35 @@ import { useCallback, useEffect, useState } from "react";
 import { CircleAlert, TriangleAlert } from "lucide-react";
 import { MDXRemote, MDXRemoteSerializeResult } from "next-mdx-remote";
 
-interface MarkdownPreviewProps {
-  markdown: string;
+interface MdxPreviewProps {
+  mdx: string;
 }
 
-export default function MarkdownPreview({ markdown }: MarkdownPreviewProps) {
+export default function MdxPreview({ mdx }: MdxPreviewProps) {
   const [mdxSource, setMdxSource] = useState<MDXRemoteSerializeResult | null>(
     null
   );
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
 
-  const serializeMarkdown = useCallback(async () => {
+  const serializeMdx = useCallback(async () => {
     setIsLoading(true);
     setError(null);
 
     try {
-      const serialized = await serialize(markdown);
+      const serialized = await serialize(mdx);
       setMdxSource(serialized);
     } catch (error) {
-      console.error("Failed to serialize Markdown:", error);
-      setError("Failed to load markdown content.");
+      console.error("Failed to serialize Mdx:", error);
+      setError("Failed to load mdx content.");
     } finally {
       setIsLoading(false);
     }
-  }, [markdown]);
+  }, [mdx]);
 
   useEffect(() => {
-    serializeMarkdown();
-  }, [serializeMarkdown]);
+    serializeMdx();
+  }, [serializeMdx]);
 
   if (isLoading) {
     return <Skeleton className="h-full w-full rounded-xl" />;
@@ -58,7 +58,7 @@ export default function MarkdownPreview({ markdown }: MarkdownPreviewProps) {
     );
   }
 
-  if (!markdown) {
+  if (!mdx) {
     return (
       <div className="h-full flex items-center justify-center">
         <div className="rounded-lg border border-amber-500/50 px-4 py-3 text-amber-600">
