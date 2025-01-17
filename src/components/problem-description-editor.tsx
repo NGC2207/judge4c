@@ -29,7 +29,11 @@ export default function ProblemDescriptionEditor() {
       value={problemDescription}
       beforeMount={handleBeforeMount}
       onChange={handleChange}
-      options={{ automaticLayout: true, minimap: { enabled: false } }}
+      options={{
+        automaticLayout: true,
+        minimap: { enabled: false },
+        wordWrap: "on",
+      }}
     />
   );
 }
