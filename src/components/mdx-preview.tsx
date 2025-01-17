@@ -109,7 +109,7 @@ export default function MdxPreview({ mdx }: MdxPreviewProps) {
   }
 
   return (
-    <ScrollArea className="h-full">
+    <ScrollArea className="h-screen">
       <div className="markdown-body">
         <MDXRemote {...mdxSource!} />
       </div>
