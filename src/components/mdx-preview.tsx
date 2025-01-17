@@ -1,5 +1,6 @@
 "use client";
 
+import remarkGfm from "remark-gfm";
 import { Skeleton } from "@/components/ui/skeleton";
 import { serialize } from "next-mdx-remote/serialize";
 import { useCallback, useEffect, useState } from "react";
@@ -22,7 +23,11 @@ export default function MdxPreview({ mdx }: MdxPreviewProps) {
     setError(null);
 
     try {
-      const serialized = await serialize(mdx);
+      const serialized = await serialize(mdx, {
+        mdxOptions: {
+          remarkPlugins: [remarkGfm],
+        },
+      });
       setMdxSource(serialized);
     } catch (error) {
       console.error("Failed to serialize Mdx:", error);
