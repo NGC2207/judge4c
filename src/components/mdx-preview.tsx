@@ -1,11 +1,16 @@
 "use client";
 
+import "@/styles/mdx.css";
 import remarkGfm from "remark-gfm";
+import rehypeSlug from "rehype-slug";
+import rehypePretty from "rehype-pretty-code";
 import { Skeleton } from "@/components/ui/skeleton";
 import { serialize } from "next-mdx-remote/serialize";
 import { useCallback, useEffect, useState } from "react";
 import { CircleAlert, TriangleAlert } from "lucide-react";
+import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import { MDXRemote, MDXRemoteSerializeResult } from "next-mdx-remote";
+import { useProblemDescriptionEditor } from "@/hooks/useProblemDescriptionEditor";
 
 interface MdxPreviewProps {
   mdx: string;
@@ -17,6 +22,7 @@ export default function MdxPreview({ mdx }: MdxPreviewProps) {
   );
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
+  const { theme } = useProblemDescriptionEditor();
 
   const serializeMdx = useCallback(async () => {
     setIsLoading(true);
@@ -25,6 +31,20 @@ export default function MdxPreview({ mdx }: MdxPreviewProps) {
     try {
       const serialized = await serialize(mdx, {
         mdxOptions: {
+          rehypePlugins: [
+            rehypeSlug,
+            [
+              rehypeAutolinkHeadings,
+              {
+                behavior: "wrap",
+                properties: {
+                  className: ["subheading-anchor"],
+                  ariaLabel: "Link to section",
+                },
+              },
+            ],
+            [rehypePretty, { theme, keepBackground: false }],
+          ],
           remarkPlugins: [remarkGfm],
         },
       });
@@ -35,7 +55,7 @@ export default function MdxPreview({ mdx }: MdxPreviewProps) {
     } finally {
       setIsLoading(false);
     }
-  }, [mdx]);
+  }, [mdx, theme]);
 
   useEffect(() => {
     serializeMdx();
