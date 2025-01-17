@@ -58,8 +58,14 @@ export default function MdxPreview({ mdx }: MdxPreviewProps) {
     }
   }, [mdx, theme]);
 
+  // Delay the serialize process to the next event loop to avoid flickering
+  // when copying code to the editor and the MDX preview shrinks.
   useEffect(() => {
-    serializeMdx();
+    const timeoutId = setTimeout(() => {
+      serializeMdx(); // Execute serializeMdx in the next event loop
+    }, 0);
+
+    return () => clearTimeout(timeoutId); // Cleanup timeout on component unmount
   }, [serializeMdx]);
 
   if (isLoading) {
