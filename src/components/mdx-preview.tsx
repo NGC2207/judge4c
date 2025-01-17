@@ -6,6 +6,7 @@ import rehypeSlug from "rehype-slug";
 import rehypePretty from "rehype-pretty-code";
 import { Skeleton } from "@/components/ui/skeleton";
 import { serialize } from "next-mdx-remote/serialize";
+import { ScrollArea } from "@/components/ui/scroll-area";
 import { useCallback, useEffect, useState } from "react";
 import { CircleAlert, TriangleAlert } from "lucide-react";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
@@ -102,8 +103,10 @@ export default function MdxPreview({ mdx }: MdxPreviewProps) {
   }
 
   return (
-    <div className="h-full markdown-body">
-      <MDXRemote {...mdxSource!} />
-    </div>
+    <ScrollArea className="h-full">
+      <div className="markdown-body">
+        <MDXRemote {...mdxSource!} />
+      </div>
+    </ScrollArea>
   );
 }
