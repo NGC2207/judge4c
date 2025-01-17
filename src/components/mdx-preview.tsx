@@ -6,10 +6,10 @@ import rehypeSlug from "rehype-slug";
 import rehypePretty from "rehype-pretty-code";
 import { Skeleton } from "@/components/ui/skeleton";
 import { serialize } from "next-mdx-remote/serialize";
-import { ScrollArea } from "@/components/ui/scroll-area";
 import { useCallback, useEffect, useState } from "react";
 import { CircleAlert, TriangleAlert } from "lucide-react";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
+import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 import { MDXRemote, MDXRemoteSerializeResult } from "next-mdx-remote";
 import { useProblemDescriptionEditor } from "@/hooks/useProblemDescriptionEditor";
 
@@ -113,6 +113,7 @@ export default function MdxPreview({ mdx }: MdxPreviewProps) {
       <div className="markdown-body">
         <MDXRemote {...mdxSource!} />
       </div>
+      <ScrollBar orientation="horizontal" />
     </ScrollArea>
   );
 }
