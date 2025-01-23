@@ -1,0 +1,12 @@
+Dockerfile
+.dockerignore
+node_modules
+npm-debug.log
+README.md
+.next
+.git
+.gitea
+.env*
+!.env.example
+!.env.local.example
+!docker/.env.example
