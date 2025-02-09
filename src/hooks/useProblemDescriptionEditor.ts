@@ -9,7 +9,7 @@ export function useProblemDescriptionEditor() {
   const { language, problemDescription, setProblemDescription } =
     useProblemDescriptionEditorStore();
 
-  const theme = resolvedTheme === "light" ? "github-light" : "github-dark";
+  const theme = resolvedTheme === "light" ? "github-light-default" : "github-dark-default";
 
   const handleChange = useCallback(
     (value: string | undefined) => {
